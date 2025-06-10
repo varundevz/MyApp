@@ -9,7 +9,7 @@
   <key>provisioningProfiles</key>
   <dict>
     <key>com.cicd.pipeline</key>
-    <string>Varun Sharma</string>
+    <string>varun_test_CI_CD.mobileprovision</string>
   </dict>
 </dict>
 </plist>
