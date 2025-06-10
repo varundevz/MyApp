@@ -30,12 +30,14 @@ jobs:
         security set-key-partition-list -S apple-tool:,apple: -s -k "temp1234" build.keychain
 
     - name: Debug: List files
-      run: ls -la
+      run: |
+        echo "Files in repo:"
+        ls -R
 
     - name: Build app
       run: |
         xcodebuild \
-          -project MyApp.xcodeproj \
+          -project MyApp.xcodeproj \  # change path if needed
           -scheme MyApp \
           -configuration Release \
           -archivePath $PWD/build/MyApp.xcarchive \
