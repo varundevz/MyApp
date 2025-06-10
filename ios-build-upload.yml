@@ -13,7 +13,7 @@ jobs:
       uses: actions/checkout@v3
 
     - name: Set up Xcode
-      run: sudo xcode-select -s /Applications/Xcode_15.0.app  # Adjust version as needed
+      run: sudo xcode-select -s /Applications/Xcode_15.0.app
 
     - name: Install provisioning profile
       run: |
@@ -29,10 +29,13 @@ jobs:
         security import cert.p12 -k build.keychain -P "${{ secrets.CERT_PASSWORD }}" -T /usr/bin/codesign
         security set-key-partition-list -S apple-tool:,apple: -s -k "temp1234" build.keychain
 
+    - name: Debug: List files
+      run: ls -la
+
     - name: Build app
       run: |
         xcodebuild \
-          -workspace MyApp.xcworkspace \
+          -project MyApp.xcodeproj \
           -scheme MyApp \
           -configuration Release \
           -archivePath $PWD/build/MyApp.xcarchive \
